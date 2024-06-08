@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Http\Requests\StoreImageRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateImageRequest;
 
 class ImageController extends Controller
@@ -14,9 +15,9 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        $imagePath = $request->file("image")->store('images', 'public');
+        $imagePath = $request->file("file")->store('images', 'public');
         $image = Image::create([
-            'user_id' => auth()->id(),
+            'user_id' => $request->user_id,
             'path' => $imagePath,
         ]);
         return response()->json([
@@ -27,9 +28,9 @@ class ImageController extends Controller
         ]);
     }
 
-    public function destroy(Image $image)
+    public function destroy(Image $image, Request $request)
     {
-        if (auth()->id() === $image->user_id)
+        if ($request->user_id === $image->user_id)
             $image->delete();
     }
 }

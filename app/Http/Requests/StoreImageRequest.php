@@ -22,7 +22,8 @@ class StoreImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['required', 'image']
+            'file' => ['required', 'image'],
+            'user_id' => ['required', 'exists:user,id']
         ];
     }
 }

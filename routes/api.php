@@ -25,5 +25,6 @@ Route::group(['prefix' => 'blogs'], function () {
 });
 
 Route::group(['prefix' => 'images'], function () {
-    Route::post('/', [ImageController::class, 'store'])->name('store')->middleware('auth:sanctum');
+    Route::post('/', [ImageController::class, 'store'])->name('store');
+    Route::delete('/{id}', [ImageController::class, 'destroy'])->name('destroy');
 });
