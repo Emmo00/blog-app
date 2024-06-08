@@ -23,7 +23,6 @@ class StoreImageRequest extends FormRequest
     {
         return [
             'file' => ['required', 'image'],
-            'user_id' => ['required', 'exists:user,id']
         ];
     }
 }

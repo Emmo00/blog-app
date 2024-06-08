@@ -11,7 +11,6 @@ class Image extends Model
 
     protected $fillable = [
         'path',
-        'blog_id'
     ];
 
     public function blog()

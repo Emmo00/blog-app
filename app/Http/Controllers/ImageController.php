@@ -17,14 +17,13 @@ class ImageController extends Controller
     {
         $imagePath = $request->file("file")->store('images', 'public');
         $image = Image::create([
-            'user_id' => $request->user_id,
             'path' => $imagePath,
         ]);
         return response()->json([
             'message' => 'Image Saved',
             'status' => true,
             'date' => $image,
-            'link' => env(config('url') . '/storage/' . $imagePath),
+            'link' => url('/storage/' . $imagePath),
         ]);
     }
 
