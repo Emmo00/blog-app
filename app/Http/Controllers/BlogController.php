@@ -59,7 +59,7 @@ class BlogController extends Controller
             $blog = Blog::create([
                 'user_id' => request()->user()->id,
                 'title' => $request->title,
-                'short_description' => $request->short_description,
+                'description' => $request->description,
                 'content' => $request->content,
                 'thumbnail' => $thumbnailPath,
                 'main_image' => $mainPicturePath
@@ -111,7 +111,7 @@ class BlogController extends Controller
                 $blog->main_image = $mainPicturePath;
             }
 
-            $blog->update($request->only('title', 'short_description', 'content'));
+            $blog->update($request->only('title', 'description', 'content'));
             return response()->json([
                 'message' => 'Blog post updated',
                 'status' => true,

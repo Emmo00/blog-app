@@ -20,7 +20,7 @@ class BlogFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => $this->faker->sentence,
-            'short_description' => $this->faker->sentence,
+            'description' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
             'thumbnail' => 'thumbnails/' . $this->faker->image('public/storage/thumbnails', 640, 480, null, false),
             'main_image' => 'main_image/' . $this->faker->image('public/storage/main_images', 800, 600, null, false),

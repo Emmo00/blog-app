@@ -23,7 +23,7 @@ class NewBlogPostRequest extends FormRequest
     {
         return [
             "title" => ["required", "string"],
-            "short_description" => ["required", "string"],
+            "description" => ["required", "string"],
             "content" => ["required", "string"],
             'thumbnail' => ['required', 'image'],
             'main_image' => ['required', 'image']

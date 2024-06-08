@@ -23,7 +23,7 @@ class UpdateBlogPostRequest extends FormRequest
     {
         return [
             "title" => ['sometimes', 'string'],
-            'short_description' => ['sometimes', 'string'],
+            'description' => ['sometimes', 'string'],
             'content' => ['sometimes', 'string'],
             'thumbnail' => ['sometimes', 'image'],
             'main_image' => ['sometimes', 'image']
