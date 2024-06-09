@@ -128,10 +128,22 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy(string $id)
     {
-        if (auth()->user()->id === $blog->user_id)
+        $blog = Blog::findOrFail($id);
+        if (auth()->user()->id === $blog->user_id) {
             $blog->delete();
-        return response();
+            return response()->json([
+                'message' => 'Blog deleted',
+                'status' => true
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Blog not deleted',
+                'status' => true,
+                'meta' => auth()->id(),
+                'data' => $blog->user()->id
+            ]);
+        }
     }
 }
