@@ -13,6 +13,9 @@ Route::get('/users', function (Request $request) {
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/loggedIn', function () {
+        return 'hi';
+    })->middleware('auth:sanctum');
 });
 
 Route::group(['prefix' => 'blogs'], function () {
