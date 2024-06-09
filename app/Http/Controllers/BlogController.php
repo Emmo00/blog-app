@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function explore()
     {
         try {
-            $blogs = Blog::orderBy('created_at', 'desc')->paginate(10);
+            $blogs = Blog::orderBy('created_at', 'desc')->paginate(12);
             return response()->json([
                 'message' => 'Explore Articles',
                 'status' => true,
@@ -33,7 +33,7 @@ class BlogController extends Controller
     {
         try {
 
-            $user_blogs = auth()->user()->blogs()->paginate(10);
+            $user_blogs = auth()->user()->blogs()->orderBy('created_at', 'desc')->paginate(12);
             return response()->json([
                 'message' => 'User Blog Posts',
                 'status' => true,
@@ -94,7 +94,7 @@ class BlogController extends Controller
     {
         try {
             $blog = Blog::findOrFail($id);
-            if (!$request->user()->id === $blog->user()->id) {
+            if (!($request->user()->id === $blog->user_id)) {
                 return response()->json([
                     "message" => 'Unauthorized',
                     'status' => false,
