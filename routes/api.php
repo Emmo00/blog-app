@@ -26,6 +26,7 @@ Route::group(['prefix' => 'blogs'], function () {
     Route::get('/{id}', [BlogController::class, 'show']);
     Route::patch('/{id}', [BlogController::class, 'update'])->name('update')->middleware('auth:sanctum');
     Route::delete('/{id}', [BlogController::class, 'destroy'])->name('destroy')->middleware('auth:sanctum');
+    Route::get('/{id}/recommendations', [BlogController::class, 'recommendations']);
 });
 
 Route::group(['prefix' => 'images'], function () {

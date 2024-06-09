@@ -121,7 +121,7 @@ class BlogController extends Controller
             return response()->json([
                 'message' => 'Server Error',
                 'status' => false,
-            ]);
+            ], 500);
         }
     }
 
@@ -144,6 +144,24 @@ class BlogController extends Controller
                 'meta' => auth()->id(),
                 'data' => $blog->user()->id
             ]);
+        }
+    }
+
+    public function recommendations(string $id)
+    {
+        try {
+            $blogs = Blog::where('id', '!=', $id)->orderBy('created_at', 'desc')->take(20)->inRandomOrder()->take(3)->get();
+
+            return response()->json([
+                'message' => 'Blog recommendations',
+                'status' => true,
+                'data' => $blogs
+            ]);
+        } catch (err) {
+            return response()->json([
+                'message' => 'Server Error',
+                'status' => false,
+            ], 500);
         }
     }
 }
