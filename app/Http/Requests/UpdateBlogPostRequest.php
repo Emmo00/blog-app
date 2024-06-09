@@ -25,8 +25,8 @@ class UpdateBlogPostRequest extends FormRequest
             "title" => ['sometimes', 'string'],
             'description' => ['sometimes', 'string'],
             'content' => ['sometimes', 'string'],
-            'thumbnail' => ['sometimes', 'image'],
-            'main_image' => ['sometimes', 'image']
+            'thumbnail' => ['sometimes', ''],
+            'main_image' => ['sometimes', '']
         ];
     }
 }

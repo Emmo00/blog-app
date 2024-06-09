@@ -13,6 +13,7 @@ Route::get('/users', function (Request $request) {
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
     Route::get('/loggedIn', function () {
         return 'hi';
     })->middleware('auth:sanctum');
