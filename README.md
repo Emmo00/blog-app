@@ -55,6 +55,14 @@ DB_USERNAME=your_database_username
 DB_PASSWORD=your_database_password
 ```
 
+### Configure Cloudinary
+
+Open the `.env` file and add your cloudinary url
+
+```env
+CLOUDINARY_URL=cloudinary://724979928357437:<your_api_secret>@drcwe987o
+```
+
 ### Step 5: Run Migrations
 
 Run the database migrations to create the necessary tables:
