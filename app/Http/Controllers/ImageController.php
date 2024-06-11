@@ -15,7 +15,8 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        $imagePath = $request->file("file")->store('images', 'public');
+
+        $imagePath = cloudinary()->uploadFile($request->file('file')->getRealPath())->getSecurePath();
         $image = Image::create([
             'path' => $imagePath,
         ]);
@@ -23,13 +24,12 @@ class ImageController extends Controller
             'message' => 'Image Saved',
             'status' => true,
             'date' => $image,
-            'link' => url('/storage/' . $imagePath),
+            'link' => $imagePath
         ]);
     }
 
     public function destroy(Image $image, Request $request)
     {
-        if ($request->user_id === $image->user_id)
-            $image->delete();
+        $image->delete();
     }
 }

@@ -54,8 +54,8 @@ class BlogController extends Controller
     public function store(NewBlogPostRequest $request)
     {
         try {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-            $mainPicturePath = $request->file('main_image')->store('main_images', 'public');
+            $thumbnailPath = cloudinary()->uploadFile($request->file('thumbnail')->getRealPath())->getSecurePath();
+            $mainPicturePath = cloudinary()->uploadFile($request->file('main_image')->getRealPath())->getSecurePath();
             $blog = Blog::create([
                 'user_id' => request()->user()->id,
                 'title' => $request->title,
@@ -101,13 +101,12 @@ class BlogController extends Controller
                 ], 401);
             }
             if ($request->hasFile('thumbnail')) {
-                Storage::delete('public/' . $blog->thumbnail);
-                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $thumbnailPath = cloudinary()->uploadFile($request->file('thumbnail')->getRealPath())->getSecurePath();
                 $blog->thumbnail = $thumbnailPath;
             }
             if ($request->hasFile('main_image')) {
                 Storage::delete('public/' . $blog->main_image);
-                $mainPicturePath = $request->file('main_image')->store('main_images', 'public');
+                $mainPicturePath = cloudinary()->uploadFile($request->file('main_image')->getRealPath())->getSecurePath();
                 $blog->main_image = $mainPicturePath;
             }
 
