@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             //
-            $table->text('description');
-            $table->longText('content');
+            $table->text('description')->change();
+            $table->longText('content')->change();
         });
     }
 
